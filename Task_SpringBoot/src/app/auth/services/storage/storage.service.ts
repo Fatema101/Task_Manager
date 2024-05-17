@@ -12,7 +12,6 @@ export class StorageService {
     window.localStorage.removeItem(TOKEN);
     window.localStorage.setItem(TOKEN,token);
   }
-
   static saveUser(user: any): void{
      window.localStorage.removeItem(USER);
      window.localStorage.setItem(USER, JSON.stringify(user));
@@ -44,7 +43,7 @@ export class StorageService {
       return false;
     }
     const role: string = this.getUserRole();
-    return role == "ADMiN";
+    return role == "ADMIN";
   }
   static isEmployeeLoggedIn(): boolean{
     if (this.getToken() === null){

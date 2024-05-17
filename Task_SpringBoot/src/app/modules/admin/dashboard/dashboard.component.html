@@ -1,0 +1,16 @@
+<div class="task-list">
+  <mat-card class="task-card">
+    <mat-card-title>Task List</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let task of listOfTasks">
+          <h3 matLine>{{task.title}}</h3>
+          <p matLine>{{task.description}}</p>
+          <p matLine>Due Date: {{task.dueDate | date}}</p>
+          <p matLine>Priority: {{task.priority}}</p>
+          <p matLine>Employee: {{task.employee.name}}</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
