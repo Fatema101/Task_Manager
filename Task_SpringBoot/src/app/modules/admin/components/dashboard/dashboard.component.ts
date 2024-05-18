@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AdminService} from "../services/admin.service";
+import {AdminService} from "../../services/admin.service";
 import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";

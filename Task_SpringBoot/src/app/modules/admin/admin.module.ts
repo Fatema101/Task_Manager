@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { PostTaskComponent } from './post-task/post-task.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { PostTaskComponent } from './components/post-task/post-task.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MatButton, MatIconAnchor, MatIconButton} from "@angular/material/button";
 import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 import {MatError, MatFormField, MatLabel, MatSuffix} from "@angular/material/form-field";
@@ -15,12 +15,14 @@ import {MatOption, MatSelect} from "@angular/material/select";
 import {MatList, MatListItem} from "@angular/material/list";
 import {MatLine} from "@angular/material/core";
 import {MatDivider} from "@angular/material/divider";
+import { UpdateTaskComponent } from './components/update-task/update-task.component';
 
 
 @NgModule({
   declarations: [
     PostTaskComponent,
-    DashboardComponent
+    DashboardComponent,
+    UpdateTaskComponent
   ],
   imports: [
     CommonModule,

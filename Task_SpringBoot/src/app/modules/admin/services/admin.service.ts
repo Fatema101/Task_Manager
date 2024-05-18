@@ -13,29 +13,40 @@ export class AdminService {
 
   getUsers():Observable<any>{
     return this.http.get(BASIC_URL+'api/admin/users', {
-      headers: this.createAuthrorizationHeader()
+      headers: this.createAuthorizationHeader()
     });
   }
 
   postTask(taskDTO:any):Observable<any>{
     return this.http.post(BASIC_URL+'api/admin/task', taskDTO, {
-      headers: this.createAuthrorizationHeader()
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  updateTask(id:number,taskDTO:any):Observable<any>{
+    return this.http.put(BASIC_URL+`api/admin/task/${id}`, taskDTO, {
+      headers: this.createAuthorizationHeader()
     });
   }
 
   deleteTask(id:number):Observable<any>{
     return this.http.delete(BASIC_URL+'api/admin/task/'+id, {
-      headers: this.createAuthrorizationHeader()
+      headers: this.createAuthorizationHeader()
     });
   }
 
   getAllTasks():Observable<any>{
     return this.http.get(BASIC_URL+'api/admin/tasks', {
-      headers: this.createAuthrorizationHeader()
+      headers: this.createAuthorizationHeader()
+    });
+  }
+  getTaskById(id:number):Observable<any>{
+    return this.http.get(BASIC_URL+'api/admin/task/'+id, {
+      headers: this.createAuthorizationHeader()
     });
   }
 
-  private createAuthrorizationHeader():HttpHeaders{
+  private createAuthorizationHeader():HttpHeaders{
     return new HttpHeaders().set(
       'Authorization', 'Bearer '+ StorageService.getToken()
       )
