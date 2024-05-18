@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AdminService} from "../../services/admin.service";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -12,11 +12,15 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class DashboardComponent {
 
   listOfTasks:any = [];
+  searchForm!: FormGroup;
   constructor(private adminService:AdminService,
               private fb: FormBuilder,
               private router:Router,
               private snackBar: MatSnackBar){
     this.getTasks();
+    this.searchForm = this.fb.group({
+      title: [null]
+    });
   }
 
   getTasks(){
@@ -34,6 +38,18 @@ export class DashboardComponent {
         console.log(res);
         this.getTasks();
         this.snackBar.open("Task deleted successfully","Close",{duration:5000});
+      }
+    );
+  }
+
+  searchTask(){
+    const listOfTasks = [];
+    const title = this.searchForm.get('title')!.value;
+    console.log(title);
+    this.adminService.searchTask(title).subscribe(
+      (res) => {
+        this.listOfTasks = res;
+        console.log(res);
       }
     );
   }

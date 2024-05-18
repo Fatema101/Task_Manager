@@ -29,6 +29,12 @@ export class AdminService {
     });
   }
 
+  searchTask(title:string):Observable<any>{
+    return this.http.get(BASIC_URL+`api/admin/tasks/search/${title}`, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
   deleteTask(id:number):Observable<any>{
     return this.http.delete(BASIC_URL+'api/admin/task/'+id, {
       headers: this.createAuthorizationHeader()
