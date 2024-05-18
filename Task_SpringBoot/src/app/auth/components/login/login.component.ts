@@ -29,7 +29,7 @@ export class LoginComponent {
     console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe((res)=>{
       console.log(res);
-      if(res.userId != null){
+      if(res.id != null){
         this.snackBar.open("login successful","Close",{duration:5000});
       }else{
         this.snackBar.open("Invalid credentials","Close",{duration:5000, panelClass:"error-snackbar"});
