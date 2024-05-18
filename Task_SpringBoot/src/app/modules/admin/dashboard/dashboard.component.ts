@@ -27,4 +27,14 @@ export class DashboardComponent {
       }
     );
   }
+
+  deleteTask(id:number){
+    this.adminService.deleteTask(id).subscribe(
+      (res) => {
+        console.log(res);
+        this.getTasks();
+        this.snackBar.open("Task deleted successfully","Close",{duration:5000});
+      }
+    );
+  }
 }

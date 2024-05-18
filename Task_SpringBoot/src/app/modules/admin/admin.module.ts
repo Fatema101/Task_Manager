@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { PostTaskComponent } from './post-task/post-task.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatButton, MatIconAnchor, MatIconButton} from "@angular/material/button";
 import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 import {MatError, MatFormField, MatLabel, MatSuffix} from "@angular/material/form-field";
 import {MatIcon} from "@angular/material/icon";
@@ -14,6 +14,7 @@ import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/m
 import {MatOption, MatSelect} from "@angular/material/select";
 import {MatList, MatListItem} from "@angular/material/list";
 import {MatLine} from "@angular/material/core";
+import {MatDivider} from "@angular/material/divider";
 
 
 @NgModule({
@@ -46,6 +47,8 @@ import {MatLine} from "@angular/material/core";
     MatList,
     MatListItem,
     MatLine,
+    MatDivider,
+    MatIconAnchor,
 
   ]
 })

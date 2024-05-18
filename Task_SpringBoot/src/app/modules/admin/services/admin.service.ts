@@ -23,6 +23,12 @@ export class AdminService {
     });
   }
 
+  deleteTask(id:number):Observable<any>{
+    return this.http.delete(BASIC_URL+'api/admin/task/'+id, {
+      headers: this.createAuthrorizationHeader()
+    });
+  }
+
   getAllTasks():Observable<any>{
     return this.http.get(BASIC_URL+'api/admin/tasks', {
       headers: this.createAuthrorizationHeader()
