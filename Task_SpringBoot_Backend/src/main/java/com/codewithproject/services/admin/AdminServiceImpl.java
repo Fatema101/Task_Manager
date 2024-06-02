@@ -1,17 +1,23 @@
 package com.codewithproject.services.admin;
 
+import com.codewithproject.dto.CommentDTO;
 import com.codewithproject.dto.TaskDTO;
 import com.codewithproject.dto.UserDto;
+import com.codewithproject.entities.Comment;
 import com.codewithproject.entities.Task;
 import com.codewithproject.entities.User;
 import com.codewithproject.enums.TaskStatus;
 import com.codewithproject.enums.UserRole;
+import com.codewithproject.repositories.CommentRepository;
 import com.codewithproject.repositories.TaskRepository;
 import com.codewithproject.repositories.UserRepository;
+import com.codewithproject.utils.JwtUtil;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,6 +27,8 @@ import java.util.stream.Collectors;
 public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
+    private final JwtUtil jwtUtil;
+    private final CommentRepository commentRepository;
 
     @Override
     public List<UserDto> getUsers() {
@@ -93,6 +101,21 @@ public class AdminServiceImpl implements AdminService {
                 .map(Task::getTaskDTO)
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public CommentDTO createComment(Long taskId, String content) {
+        Optional<Task> optionalTask = taskRepository.findById(taskId);
+        User user = jwtUtil.getLoggedInUser();
+        if (optionalTask.isPresent() && user != null) {
+            Comment comment = new Comment();
+            comment.setCreatedAt(new Date());
+            comment.setContent(content);
+            comment.setTask(optionalTask.get());
+            comment.setUser(user);
+            return commentRepository.save(comment).getCommentDTO();
+        }
+        throw new EntityNotFoundException("User or Task not found");
     }
 
     private TaskStatus mapStringToTaskStatus(String status) {

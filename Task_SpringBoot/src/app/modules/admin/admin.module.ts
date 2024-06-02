@@ -16,13 +16,15 @@ import {MatList, MatListItem} from "@angular/material/list";
 import {MatLine} from "@angular/material/core";
 import {MatDivider} from "@angular/material/divider";
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
+import { ViewTaskDetailsComponent } from './components/view-task-details/view-task-details.component';
 
 
 @NgModule({
   declarations: [
     PostTaskComponent,
     DashboardComponent,
-    UpdateTaskComponent
+    UpdateTaskComponent,
+    ViewTaskDetailsComponent
   ],
   imports: [
     CommonModule,
